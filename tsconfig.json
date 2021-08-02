@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "target": "esnext",
+    "module": "commonjs",
+    "lib": ["es6"],
+    "allowJs": true,
+    "jsx": "react-native",
+    "noEmit": true,
+    "isolatedModules": true,
+    /* Strict Type-Checking Options */
+    "strict": true,
+    /* Module Resolution Options */
+    "moduleResolution": "node",
+    // "baseUrl": "./",
+    "resolveJsonModule": true,
+    // "paths": {
+    //   "src/*": ["./src/*"],
+    //   "fonts/*": ["./src/assets/fonts/*", "./src/assets/fonts/*.ios", "./src/assets/fonts/*.android"],
+    //   "components": ["./src/components/index.ts"],
+    //   "components/*": ["./src/components/*"]
+    // },
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    /* Experimental Options */
+    "experimentalDecorators": true,
+  },
+  "exclude": [
+    "node_modules", "babel.config.js", "metro.config.js"
+  ]
+ }
