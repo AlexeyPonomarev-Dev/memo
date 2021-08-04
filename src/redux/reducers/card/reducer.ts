@@ -1,7 +1,11 @@
-import { ADD_COUPLE, RESET_COUPLE } from "./actionTypes";
+import {
+  HIDE_CURRENT_COUPLE,
+  OPEN_CARD,
+  RESET_OPEN_CARDS,
+} from "./actionTypes";
 import { CardDataType } from "./types";
 
-const initialState: CardDataType = [
+const cards: CardDataType = [
   { id: 0, value: 1, hasCouple: false, isOpen: false },
   { id: 1, value: 2, hasCouple: false, isOpen: false },
   { id: 2, value: 3, hasCouple: false, isOpen: false },
@@ -12,12 +16,25 @@ const initialState: CardDataType = [
   { id: 7, value: 4, hasCouple: false, isOpen: false },
 ];
 
+const initialState = {
+  openCards: [],
+  data: cards,
+};
+
 const cardReducer = (state = initialState, action: any) => {
   switch (action.type) {
-    case ADD_COUPLE:
+    case OPEN_CARD:
+      return {
+        ...state,
+        openCards: [...state.openCards, action.cardId],
+      };
+    case HIDE_CURRENT_COUPLE:
       return action.payload;
-    case RESET_COUPLE:
-      return initialState;
+    case RESET_OPEN_CARDS:
+      return {
+        ...state,
+        openCards: [],
+      };
     default:
       return state;
   }

@@ -1,62 +1,52 @@
-import React, { useState } from "react";
-import { View } from "react-native";
-import { connect } from "react-redux";
+import React, { useEffect } from "react";
+import { View, Text } from "react-native";
+import { connect, useDispatch } from "react-redux";
+import {
+  hideCouple,
+  resetOpenCards,
+} from "../../../redux/reducers/card/actions";
 
 import { Card } from "../../elements/Card";
 import { styles } from "./style";
-import * as actions from "../../../redux/reducers/card/actions";
 
-const CardBoard = ({ cards, addCouple }) => {
-  const [prevCardId, setPrevCardId] = useState<number>(-1);
+const CardBoard = ({ cards, openCards }: any) => {
+  const dispatch = useDispatch();
 
-  const onPressHandler = (cardId: number) => {
-    const prevCard = cards.find(crd => crd.id === prevCardId);
-    const currentCard = cards.find(crd => crd.id === cardId);
+  useEffect(() => {
+    if (openCards.length === 2) {
+      const firstCard = cards.find(
+        (card: { id: number }) => card.id === openCards[0],
+      );
+      const secondCard = cards.find(
+        (card: { id: number }) => card.id === openCards[1],
+      );
 
-    if (currentCard) currentCard.isOpen = true;
-    addCouple(cards);
-    if (prevCard?.value) {
-      if (prevCard?.value === currentCard?.value) {
-        prevCard.hasCouple = true;
-        currentCard.hasCouple = true;
-        prevCard.isOpen = true;
-        currentCard.isOpen = true;
-
-        addCouple(cards);
-      } else {
-        prevCard.isOpen = false;
-        currentCard.isOpen = false;
-
-        addCouple(cards);
-      }
-
-      setPrevCardId(-1);
-      return;
+      firstCard.value === secondCard.value
+        ? dispatch(resetOpenCards())
+        : dispatch(hideCouple(cards, openCards));
     }
-
-    setPrevCardId(cardId);
-  };
+  }, [cards, dispatch, openCards]);
 
   return (
     <View style={styles.container}>
-      {cards.map(item => (
+      {cards.map((item: any) => (
         <Card
           key={item.id}
           id={item.id}
           value={item.value}
-          onCardPress={onPressHandler}
-          hasCouple={item.hasCouple}
-          isOpened={item.isOpen}
+          opened={item.isOpen}
         />
       ))}
+      <Text>open cards = {openCards.length}</Text>
     </View>
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: any) => {
   return {
-    cards: state.cards,
+    cards: state.cards.data,
+    openCards: state.cards.openCards,
   };
 };
 
-export default connect(mapStateToProps, actions)(CardBoard);
+export default connect(mapStateToProps)(CardBoard);

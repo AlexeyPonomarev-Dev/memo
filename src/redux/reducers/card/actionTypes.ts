@@ -1,3 +1,3 @@
-export const ADD_COUPLE = "ADD_COUPLE";
-export const RESET_COUPLE = "RESET_COUPLE";
-export const TOGGLE_CARD = "TOGGLE_CARD";
+export const OPEN_CARD = "OPEN_CARD";
+export const HIDE_CURRENT_COUPLE = "HIDE_CURRENT_COUPLE";
+export const RESET_OPEN_CARDS = "RESET_OPEN_CARDS";
