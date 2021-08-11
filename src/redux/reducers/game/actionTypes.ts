@@ -1,0 +1,2 @@
+export const ADD_OPENED_CARD = "ADD_OPENED_CARD";
+export const DISABLED_CARDS = "DISABLED_CARDS";

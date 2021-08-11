@@ -6,8 +6,8 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
 
-    width: 80,
-    height: 100,
+    width: 85,
+    height: 105,
     marginTop: 10,
 
     backgroundColor: pink,

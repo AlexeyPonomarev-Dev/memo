@@ -1,7 +1,6 @@
 export type CardType = {
   id: number;
-  value: number;
-  hasCouple: boolean;
+  value: string;
   isOpen: boolean;
 };
 

@@ -1,3 +1,3 @@
-export const OPEN_CARD = "OPEN_CARD";
-export const HIDE_CURRENT_COUPLE = "HIDE_CURRENT_COUPLE";
-export const RESET_OPEN_CARDS = "RESET_OPEN_CARDS";
+export const SET_CARDS = "SET_CARDS";
+export const HIDE_OPENED_CARDS = "HIDE_OPENED_CARDS";
+export const SET_ONE_CARD = "SET_ONE_CARD";
