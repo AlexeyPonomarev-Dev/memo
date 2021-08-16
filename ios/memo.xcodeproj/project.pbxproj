@@ -114,7 +114,6 @@
 				1DD81349A42BCEEEC35B14B7 /* Pods-memo-memoTests.debug.xcconfig */,
 				C256D1B3DDB08A0C1FCAE2E5 /* Pods-memo-memoTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
