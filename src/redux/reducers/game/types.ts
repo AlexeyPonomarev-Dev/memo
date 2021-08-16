@@ -20,6 +20,7 @@ export type GameStore = {
   openedCard: number;
   showModal: boolean;
   progress: number;
+  totalSteps: number;
   currentImagesType: imagesType;
   gameStarted: boolean;
 };

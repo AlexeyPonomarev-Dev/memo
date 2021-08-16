@@ -47,14 +47,14 @@ const BottomModal: FC<Props> = ({ showModal }) => {
         <View style={styles.modal}>
           <TouchableWithoutFeedback>
             <View>
-              <Text style={styles.title}>Game Complete</Text>
+              <Text style={styles.title}>Игра Окончена</Text>
 
               <TouchableOpacity style={styles.button} onPress={resetHandler}>
-                <Text style={styles.buttonText}>Restart</Text>
+                <Text style={styles.buttonText}>Повторить</Text>
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.button} onPress={openMenuHandler}>
-                <Text style={styles.buttonText}>Change Images</Text>
+                <Text style={styles.buttonText}>Сменить Кратинки</Text>
               </TouchableOpacity>
             </View>
           </TouchableWithoutFeedback>

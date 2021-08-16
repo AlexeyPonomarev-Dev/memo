@@ -7,6 +7,7 @@ import {
   SET_SHOW_MODAL,
   ADD_PROGRESS,
   GAME_STARTED,
+  ADD_ONE_STEP,
 } from "./actionTypes";
 import { Action, GameStore } from "./types";
 
@@ -15,6 +16,7 @@ const initialState: GameStore = {
   openedCard: -1,
   showModal: false,
   progress: 0,
+  totalSteps: 0,
   currentImagesType: "Simpsons",
   gameStarted: false,
 };
@@ -36,6 +38,8 @@ export const gameReducer = (state = initialState, action: Action) => {
       return { ...state, progress: state.progress + 1 };
     case GAME_STARTED:
       return { ...state, gameStarted: true };
+    case ADD_ONE_STEP:
+      return { ...state, totalSteps: state.totalSteps + 1 };
     default:
       return state;
   }

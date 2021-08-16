@@ -8,16 +8,19 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
 
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-between",
     alignItems: "center",
 
     backgroundColor: white,
   },
 
-  title: {
+  menuIcon: {
     marginLeft: "auto",
-    marginRight: "auto",
-    fontSize: 16,
-    fontWeight: "bold",
+  },
+
+  pairsStatus: {
+    marginRight: 20,
+    flexDirection: "row",
+    alignItems: "center",
   },
 });

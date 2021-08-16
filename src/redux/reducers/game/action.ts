@@ -7,6 +7,7 @@ import {
   SET_SHOW_MODAL,
   ADD_PROGRESS,
   GAME_STARTED,
+  ADD_ONE_STEP,
 } from "./actionTypes";
 import { CardDataType, CardType, SetCardsPayload } from "./types";
 
@@ -24,6 +25,10 @@ export const openCard = (currentCard: number) => {
     });
 
     if (openedCard > -1) {
+      dispatch({
+        type: ADD_ONE_STEP,
+      });
+
       const firstCard = cards.find((card: CardType) => card.id === openedCard);
       const secondCard = cards.find(
         (card: CardType) => card.id === currentCard,
