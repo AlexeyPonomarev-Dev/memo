@@ -18,10 +18,10 @@ export type Card = {
 export type GameStore = {
   cards: CardDataType;
   openedCard: number;
-  disabledCards: boolean;
   showModal: boolean;
   progress: number;
   currentImagesType: imagesType;
+  gameStarted: boolean;
 };
 
 export type Action = {

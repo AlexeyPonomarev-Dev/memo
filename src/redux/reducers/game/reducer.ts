@@ -6,16 +6,17 @@ import {
   SET_CARDS,
   SET_SHOW_MODAL,
   ADD_PROGRESS,
+  GAME_STARTED,
 } from "./actionTypes";
 import { Action, GameStore } from "./types";
 
 const initialState: GameStore = {
   cards: shuffle(getGameData("Simpsons")),
   openedCard: -1,
-  disabledCards: false,
   showModal: false,
   progress: 0,
   currentImagesType: "Simpsons",
+  gameStarted: false,
 };
 
 export const gameReducer = (state = initialState, action: Action) => {
@@ -33,6 +34,8 @@ export const gameReducer = (state = initialState, action: Action) => {
       return { ...state, showModal: action.payload };
     case ADD_PROGRESS:
       return { ...state, progress: state.progress + 1 };
+    case GAME_STARTED:
+      return { ...state, gameStarted: true };
     default:
       return state;
   }

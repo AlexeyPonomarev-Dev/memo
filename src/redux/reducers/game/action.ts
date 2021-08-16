@@ -6,6 +6,7 @@ import {
   OPEN_CARD,
   SET_SHOW_MODAL,
   ADD_PROGRESS,
+  GAME_STARTED,
 } from "./actionTypes";
 import { CardDataType, CardType, SetCardsPayload } from "./types";
 
@@ -17,6 +18,10 @@ export const openCard = (currentCard: number) => {
     let newPayload = -1;
 
     dispatch(setCards({ cards: [currentCard], hide: false }));
+
+    dispatch({
+      type: GAME_STARTED,
+    });
 
     if (openedCard > -1) {
       const firstCard = cards.find((card: CardType) => card.id === openedCard);

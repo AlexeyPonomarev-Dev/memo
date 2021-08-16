@@ -12,6 +12,7 @@ const Card = ({
   opened,
   disabled,
   size: { width, height },
+  gameStarted,
 }: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const [showCardValue, setShowCardValue] = useState(false);
@@ -20,9 +21,12 @@ const Card = ({
 
   useEffect(() => {
     if (!opened) {
-      setTimeout(() => {
-        hideCard();
-      }, CARD_ANIMATION_TIME);
+      setTimeout(
+        () => {
+          hideCard();
+        },
+        gameStarted ? CARD_ANIMATION_TIME : 0,
+      );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [opened]);
@@ -91,7 +95,7 @@ const Card = ({
             height,
           },
         ]}>
-        {showCardValue && (
+        {showCardValue && gameStarted && (
           <Image style={styles.image} source={value} resizeMode="contain" />
         )}
       </Animated.View>
@@ -102,7 +106,7 @@ const Card = ({
 const mapStateToProps = (state: any) => {
   return {
     cards: state.game.cards,
-    disabled: state.game.disabledCards,
+    gameStarted: state.game.gameStarted,
   };
 };
 
