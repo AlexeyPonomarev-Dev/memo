@@ -1,16 +1,17 @@
-import { getGameData, shuffle } from "../../../utils";
-import { SET_CARDS } from "./actionTypes";
+// import { getGameData, shuffle } from "../../../utils";
+// import { RESET_GAME, SET_CARDS } from "./actionTypes";
 
-const initialState = shuffle(getGameData("pawPatrol"));
-console.log(initialState);
+// const initialState = shuffle(getGameData("Simpsons"));
 
-const cardReducer = (state = initialState, action: any) => {
-  switch (action.type) {
-    case SET_CARDS:
-      return action.payload;
-    default:
-      return state;
-  }
-};
+// const cardReducer = (state = initialState, action: any) => {
+//   switch (action.type) {
+//     case SET_CARDS:
+//       return action.payload;
+//     case RESET_GAME:
+//       return shuffle(getGameData(action.payload));
+//     default:
+//       return state;
+//   }
+// };
 
-export { cardReducer };
+// export { cardReducer };

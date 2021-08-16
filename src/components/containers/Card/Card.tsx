@@ -1,12 +1,18 @@
-import React, { useRef, useState, useEffect, memo } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Animated, TouchableWithoutFeedback, Image } from "react-native";
 import { connect, useDispatch } from "react-redux";
 import { CARD_ANIMATION_TIME } from "../../../constants/time";
-import { pink } from "../../../constants/UIColors";
-import { addOpenedCard } from "../../../redux/reducers/game/action";
+import { orange } from "../../../constants/UIColors";
+import { openCard } from "../../../redux/reducers/game/action";
 import { styles } from "./style";
 
-const Card = memo(({ id, value, opened, disabled }: any) => {
+const Card = ({
+  id,
+  value,
+  opened,
+  disabled,
+  size: { width, height },
+}: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const [showCardValue, setShowCardValue] = useState(false);
   const turnValue = useRef(new Animated.Value(0)).current;
@@ -30,7 +36,7 @@ const Card = memo(({ id, value, opened, disabled }: any) => {
   };
 
   const onPressHandler = () => {
-    dispatch(addOpenedCard(id));
+    dispatch(openCard(id));
     showCard();
   };
 
@@ -68,7 +74,7 @@ const Card = memo(({ id, value, opened, disabled }: any) => {
 
   const bgColor = turnValue.interpolate({
     inputRange: [0, 1],
-    outputRange: [pink, "white"],
+    outputRange: [orange, "white"],
   });
 
   return (
@@ -78,24 +84,24 @@ const Card = memo(({ id, value, opened, disabled }: any) => {
       <Animated.View
         style={[
           styles.container,
-          { transform: [{ rotateY }], backgroundColor: bgColor },
+          {
+            transform: [{ rotateY }],
+            backgroundColor: bgColor,
+            width,
+            height,
+          },
         ]}>
         {showCardValue && (
-          <Image
-            style={{ width: 80, height: 100 }}
-            source={value}
-            resizeMode="contain"
-          />
+          <Image style={styles.image} source={value} resizeMode="contain" />
         )}
       </Animated.View>
     </TouchableWithoutFeedback>
   );
-});
+};
 
 const mapStateToProps = (state: any) => {
   return {
-    cards: state.cards.data,
-    openCards: state.cards.openCards,
+    cards: state.game.cards,
     disabled: state.game.disabledCards,
   };
 };

@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { pink2 } from "../../../constants/UIColors";
+import { beige } from "../../../constants/UIColors";
 
 export const styles = StyleSheet.create({
   container: {
@@ -11,6 +11,6 @@ export const styles = StyleSheet.create({
     height: "100%",
     padding: 5,
 
-    backgroundColor: pink2,
+    backgroundColor: beige,
   },
 });

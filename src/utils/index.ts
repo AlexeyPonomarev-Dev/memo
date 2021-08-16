@@ -1,5 +1,5 @@
 /* eslint-disable global-require */
-import { CardDataType } from "../redux/reducers/card/types";
+import { CardDataType } from "../redux/reducers/game/types";
 import { imagesType } from "./types";
 
 export const shuffle = (array: CardDataType) => {
@@ -53,6 +53,8 @@ const pawPatrolImages = [
   require("../assets/img/paw-patrol/zuma.png"),
 ];
 
+export const imagesTypes: imagesType[] = ["Simpsons", "Paw-Patrol"];
+
 const getDataItem = (arr: any): CardDataType => {
   const data = [];
   for (let i = 0; i < arr.length * 2; i++) {
@@ -69,9 +71,9 @@ const getDataItem = (arr: any): CardDataType => {
 
 export const getGameData = (type: imagesType): CardDataType => {
   switch (type) {
-    case "simpsons":
+    case "Simpsons":
       return getDataItem(simpsonsImages);
-    case "pawPatrol":
+    case "Paw-Patrol":
       return getDataItem(pawPatrolImages);
     default:
       return [];

@@ -1,1 +1,1 @@
-export type imagesType = 'simpsons' | 'pawPatrol';
+export type imagesType = "Simpsons" | "Paw-Patrol";

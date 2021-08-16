@@ -1,16 +1,16 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { SafeAreaView, Text, StyleSheet } from "react-native";
-import { CardBoard } from "./src/components/containers/CardBoard";
-import { pink2 } from "./src/constants/UIColors";
+import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
+import { black, white } from "./src/constants/UIColors";
 import { store } from "./src/redux/store";
+import { Navigation } from "./src/Navigation";
 
 const App = () => {
   return (
     <Provider store={store}>
+      <StatusBar backgroundColor={black} />
       <SafeAreaView style={styles.container}>
-        <Text>Home Screen</Text>
-        <CardBoard />
+        <Navigation />
       </SafeAreaView>
     </Provider>
   );
@@ -19,9 +19,7 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-
-    backgroundColor: pink2,
+    backgroundColor: white,
   },
 });
 
