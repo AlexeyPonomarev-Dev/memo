@@ -1,4 +1,5 @@
 /* eslint-disable global-require */
+import { BackHandler, Alert, ImageRequireSource } from "react-native";
 import { CardDataType } from "../redux/reducers/game/types";
 import { imagesType } from "./types";
 
@@ -6,13 +7,10 @@ export const shuffle = (array: CardDataType) => {
   let currentIndex = array.length,
     randomIndex;
 
-  // While there remain elements to shuffle...
   while (currentIndex !== 0) {
-    // Pick a remaining element...
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
 
-    // And swap it with the current element.
     // eslint-disable-next-line no-param-reassign
     [array[currentIndex], array[randomIndex]] = [
       array[randomIndex],
@@ -55,7 +53,7 @@ const pawPatrolImages = [
 
 export const imagesTypes: imagesType[] = ["Simpsons", "Paw-Patrol"];
 
-const getDataItem = (arr: any): CardDataType => {
+const getDataItem = (arr: ImageRequireSource[]): CardDataType => {
   const data = [];
   for (let i = 0; i < arr.length * 2; i++) {
     const imageIndex = i + 1 > arr.length ? i - arr.length : i;
@@ -78,4 +76,15 @@ export const getGameData = (type: imagesType): CardDataType => {
     default:
       return [];
   }
+};
+
+export const exitAppHandler = () => {
+  Alert.alert("Приложение будет закрыто", "Вы действительно хотите выйти?", [
+    {
+      text: "Отмена",
+      onPress: () => null,
+      style: "cancel",
+    },
+    { text: "Выйти", onPress: () => BackHandler.exitApp() },
+  ]);
 };

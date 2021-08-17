@@ -1,8 +1,9 @@
+import { ImageRequireSource } from "react-native";
 import { imagesType } from "../../../utils/types";
 
 export type CardType = {
   id: number;
-  value: string;
+  value: ImageRequireSource;
   isOpen: boolean;
 };
 
@@ -23,11 +24,6 @@ export type GameStore = {
   totalSteps: number;
   currentImagesType: imagesType;
   gameStarted: boolean;
-};
-
-export type Action = {
-  type: string;
-  payload: number | imagesType | boolean;
 };
 
 export type SetCardsPayload = {

@@ -1,5 +1,7 @@
+import { ThunkDispatch } from "redux-thunk";
 import { CARD_ANIMATION_TIME } from "../../../constants/time";
 import { imagesType } from "../../../utils/types";
+import { StoreType, AppAction } from "../../storeTypes";
 import {
   RESET_GAME,
   SET_CARDS,
@@ -12,7 +14,10 @@ import {
 import { CardDataType, CardType, SetCardsPayload } from "./types";
 
 export const openCard = (currentCard: number) => {
-  return async (dispatch: any, getState: any) => {
+  return async (
+    dispatch: ThunkDispatch<StoreType, {}, AppAction>,
+    getState: () => StoreType,
+  ) => {
     const {
       game: { openedCard, cards },
     } = await getState();
@@ -34,7 +39,7 @@ export const openCard = (currentCard: number) => {
         (card: CardType) => card.id === currentCard,
       );
 
-      if (firstCard.value === secondCard.value) {
+      if (firstCard?.value === secondCard?.value) {
         dispatch(setCards({ cards: [openedCard, currentCard], hide: false }));
         dispatch({
           type: ADD_PROGRESS,
@@ -64,7 +69,10 @@ export const openCard = (currentCard: number) => {
 };
 
 export const setCards = (payload: SetCardsPayload) => {
-  return async (dispatch: any, getState: any) => {
+  return async (
+    dispatch: ThunkDispatch<StoreType, {}, AppAction>,
+    getState: () => StoreType,
+  ) => {
     let newPayload: CardDataType = [];
     const {
       game: { cards },
@@ -86,7 +94,10 @@ export const setCards = (payload: SetCardsPayload) => {
 };
 
 export const resetGame = (type?: imagesType) => {
-  return async (dispatch: any, getState: any) => {
+  return async (
+    dispatch: ThunkDispatch<StoreType, {}, AppAction>,
+    getState: () => StoreType,
+  ) => {
     const {
       game: { currentImagesType },
     } = await getState();
@@ -99,8 +110,10 @@ export const resetGame = (type?: imagesType) => {
 };
 
 export const setShowModal = (payload: boolean) => {
-  return {
-    type: SET_SHOW_MODAL,
-    payload,
+  return async (dispatch: ThunkDispatch<StoreType, {}, AppAction>) => {
+    dispatch({
+      type: SET_SHOW_MODAL,
+      payload,
+    });
   };
 };

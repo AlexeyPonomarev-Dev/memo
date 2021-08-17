@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { black, blue, orange, white } from "../../../constants/UIColors";
+import { black, blue, white } from "../../../constants/UIColors";
 
 export const styles = StyleSheet.create({
   overlay: {
@@ -14,34 +14,39 @@ export const styles = StyleSheet.create({
     zIndex: 1,
 
     width: "100%",
-    height: 200,
-    padding: 20,
+    paddingTop: 20,
+    paddingHorizontal: 20,
+    paddingBottom: 40,
 
     alignItems: "center",
-
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
 
     backgroundColor: blue,
+    opacity: 0.9,
   },
 
   title: {
     marginBottom: 20,
+    textAlign: "center",
+
     fontSize: 22,
     fontWeight: "bold",
     color: white,
   },
 
   button: {
-    padding: 5,
+    paddingVertical: 8,
+    paddingHorizontal: 30,
     marginBottom: 10,
 
     borderRadius: 8,
-    backgroundColor: orange,
+    backgroundColor: white,
   },
 
   buttonText: {
     fontSize: 16,
+    fontWeight: "bold",
     textAlign: "center",
     color: black,
   },

@@ -5,14 +5,9 @@ import { useNavigation } from "@react-navigation/native";
 import { connect } from "react-redux";
 import { MenuIcon, PairIcon } from "../../../assets/img/SVG";
 import { styles } from "./style";
-import { HeaderNavigationProp } from "./types";
+import { HeaderNavigationProp, Props } from "./types";
 import { orange } from "../../../constants/UIColors";
-import { IStore } from "../../../redux/storeTypes";
-
-interface Props {
-  progress: number;
-  totalSteps: number;
-}
+import { StoreType } from "../../../redux/storeTypes";
 
 const Header: FC<Props> = ({ progress, totalSteps }) => {
   const navigation = useNavigation<HeaderNavigationProp>();
@@ -35,7 +30,7 @@ const Header: FC<Props> = ({ progress, totalSteps }) => {
   );
 };
 
-const mapStateToProps = (state: IStore) => {
+const mapStateToProps = (state: StoreType) => {
   return {
     progress: state.game.progress,
     totalSteps: state.game.totalSteps,

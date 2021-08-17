@@ -1,5 +1,6 @@
 import { getGameData, shuffle } from "../../../utils";
 import { imagesType } from "../../../utils/types";
+import { AppAction } from "../../storeTypes";
 import {
   OPEN_CARD,
   RESET_GAME,
@@ -9,7 +10,7 @@ import {
   GAME_STARTED,
   ADD_ONE_STEP,
 } from "./actionTypes";
-import { Action, GameStore } from "./types";
+import { GameStore } from "./types";
 
 const initialState: GameStore = {
   cards: shuffle(getGameData("Simpsons")),
@@ -21,7 +22,7 @@ const initialState: GameStore = {
   gameStarted: false,
 };
 
-export const gameReducer = (state = initialState, action: Action) => {
+export const gameReducer = (state = initialState, action: AppAction) => {
   switch (action.type) {
     case OPEN_CARD:
       return { ...state, openedCard: action.payload };

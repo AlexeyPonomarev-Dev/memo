@@ -1,21 +1,22 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, FC } from "react";
 import { Animated, TouchableWithoutFeedback, Image } from "react-native";
 import { connect, useDispatch } from "react-redux";
 import { CARD_ANIMATION_TIME } from "../../../constants/time";
 import { orange } from "../../../constants/UIColors";
 import { openCard } from "../../../redux/reducers/game/action";
+import { StoreType } from "../../../redux/storeTypes";
 import { styles } from "./style";
+import { Props } from "./types";
 
-const Card = ({
+const Card: FC<Props> = ({
   id,
   value,
   opened,
-  disabled,
   size: { width, height },
   gameStarted,
-}: any) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [showCardValue, setShowCardValue] = useState(false);
+}) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [showCardValue, setShowCardValue] = useState<boolean>(false);
   const turnValue = useRef(new Animated.Value(0)).current;
   const dispatch = useDispatch();
 
@@ -82,9 +83,7 @@ const Card = ({
   });
 
   return (
-    <TouchableWithoutFeedback
-      onPress={onPressHandler}
-      disabled={isOpen || disabled}>
+    <TouchableWithoutFeedback onPress={onPressHandler} disabled={isOpen}>
       <Animated.View
         style={[
           styles.container,
@@ -103,7 +102,7 @@ const Card = ({
   );
 };
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: StoreType) => {
   return {
     cards: state.game.cards,
     gameStarted: state.game.gameStarted,

@@ -6,20 +6,16 @@ import {
   Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  Platform,
 } from "react-native";
+
 import { connect, useDispatch } from "react-redux";
 
 import { resetGame, setShowModal } from "../../../redux/reducers/game/action";
-import { IStore } from "../../../redux/storeTypes";
+import { StoreType } from "../../../redux/storeTypes";
+import { exitAppHandler } from "../../../utils";
 import { styles } from "./style";
-
-interface Props {
-  showModal: boolean;
-}
-
-interface NavigationProps {
-  openDrawer: () => void;
-}
+import { NavigationProps, Props } from "./types";
 
 const BottomModal: FC<Props> = ({ showModal }) => {
   const dispatch = useDispatch();
@@ -44,8 +40,8 @@ const BottomModal: FC<Props> = ({ showModal }) => {
         style={styles.overlay}
         activeOpacity={1}
         onPress={closeModal}>
-        <View style={styles.modal}>
-          <TouchableWithoutFeedback>
+        <TouchableWithoutFeedback>
+          <View style={styles.modal}>
             <View>
               <Text style={styles.title}>Игра Окончена</Text>
 
@@ -56,15 +52,23 @@ const BottomModal: FC<Props> = ({ showModal }) => {
               <TouchableOpacity style={styles.button} onPress={openMenuHandler}>
                 <Text style={styles.buttonText}>Сменить Кратинки</Text>
               </TouchableOpacity>
+
+              {Platform.OS === "android" && (
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={exitAppHandler}>
+                  <Text style={styles.buttonText}>Выйти</Text>
+                </TouchableOpacity>
+              )}
             </View>
-          </TouchableWithoutFeedback>
-        </View>
+          </View>
+        </TouchableWithoutFeedback>
       </TouchableOpacity>
     </Modal>
   );
 };
 
-const mapStateToProps = (state: IStore) => {
+const mapStateToProps = (state: StoreType) => {
   return {
     showModal: state.game.showModal,
   };

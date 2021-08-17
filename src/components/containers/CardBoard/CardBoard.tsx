@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, FC } from "react";
 import { View, LayoutChangeEvent } from "react-native";
 import { connect } from "react-redux";
+import { CardType } from "../../../redux/reducers/game/types";
 
 import { Card } from "../Card";
 import { styles } from "./style";
+import { Props } from "./types";
 
-const CardBoard = ({ cards }: any) => {
+const CardBoard: FC<Props> = ({ cards }) => {
   const [size, setSize] = useState({
     width: 80,
     height: 100,
@@ -26,7 +28,7 @@ const CardBoard = ({ cards }: any) => {
 
   return (
     <View style={styles.container} onLayout={getContainerSize}>
-      {cards.map((item: any) => (
+      {cards.map((item: CardType) => (
         <Card
           key={item.id}
           id={item.id}

@@ -1,38 +1,17 @@
-import React from "react";
-import {
-  Text,
-  TouchableOpacity,
-  View,
-  BackHandler,
-  Platform,
-  Alert,
-} from "react-native";
+import React, { FC } from "react";
+import { Text, TouchableOpacity, View, Platform } from "react-native";
 import { useDispatch } from "react-redux";
 
 import { ExitIcon } from "../../../assets/img/SVG";
 import { black } from "../../../constants/UIColors";
 import { resetGame } from "../../../redux/reducers/game/action";
-import { imagesTypes } from "../../../utils";
+import { exitAppHandler, imagesTypes } from "../../../utils";
 import { imagesType } from "../../../utils/types";
 import { styles } from "./style";
+import { Props } from "./types";
 
-interface Props {
-  closeDrawer: () => void;
-}
-
-const DrawerMenu = ({ closeDrawer }: Props) => {
+const DrawerMenu: FC<Props> = ({ closeDrawer }) => {
   const dispatch = useDispatch();
-
-  const exitAppHandler = () => {
-    Alert.alert("Закрыть приложение?", "Вы действительно хотите выйти?", [
-      {
-        text: "Cancel",
-        onPress: () => null,
-        style: "cancel",
-      },
-      { text: "YES", onPress: () => BackHandler.exitApp() },
-    ]);
-  };
 
   return (
     <View style={styles.container}>
