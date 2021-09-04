@@ -1,5 +1,4 @@
 import { getGameData, shuffle } from "../../../utils";
-import { imagesType } from "../../../utils/types";
 import { AppAction } from "../../storeTypes";
 import {
   OPEN_CARD,
@@ -29,7 +28,7 @@ export const gameReducer = (state = initialState, action: AppAction) => {
     case RESET_GAME:
       return {
         ...initialState,
-        cards: shuffle(getGameData(action.payload as imagesType)),
+        cards: shuffle(getGameData(action.payload)),
       };
     case SET_CARDS:
       return { ...state, cards: action.payload };
