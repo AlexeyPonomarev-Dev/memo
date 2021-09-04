@@ -28,6 +28,7 @@ export const gameReducer = (state = initialState, action: AppAction) => {
     case RESET_GAME:
       return {
         ...initialState,
+        currentImagesType: action.payload,
         cards: shuffle(getGameData(action.payload)),
       };
     case SET_CARDS:
