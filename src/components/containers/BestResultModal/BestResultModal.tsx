@@ -56,7 +56,10 @@ const BestResultModal: FC<Props> = ({ showResultModal, totalSteps }) => {
             onChangeText={setName}
             placeholder="Ваше имя"
           />
-          <TouchableOpacity style={styles.button} onPress={onSubmitHandler}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={onSubmitHandler}
+            disabled={name.length < 3}>
             <Text>Сохранить результат</Text>
           </TouchableOpacity>
         </View>
