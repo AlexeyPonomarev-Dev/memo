@@ -10,8 +10,10 @@ import {
   ADD_PROGRESS,
   GAME_STARTED,
   ADD_ONE_STEP,
+  SET_SHOW_RESULT_MODAL,
+  SET_BEST_RESULT,
 } from "./actionTypes";
-import { CardDataType, CardType, SetCardsPayload } from "./types";
+import { CardDataType, CardType, ResultType, SetCardsPayload } from "./types";
 
 export const openCard = (currentCard: number) => {
   return async (
@@ -19,7 +21,7 @@ export const openCard = (currentCard: number) => {
     getState: () => StoreType,
   ) => {
     const {
-      game: { openedCard, cards },
+      game: { openedCard, cards, totalSteps, bestResult },
     } = await getState();
     let newPayload = -1;
 
@@ -51,7 +53,9 @@ export const openCard = (currentCard: number) => {
           } = getState();
 
           if (progress === cards.length / 2) {
-            dispatch(setShowModal(true));
+            totalSteps < bestResult.result || bestResult.result === 0
+              ? dispatch(setShowResultModal(true))
+              : dispatch(setShowModal(true));
           }
         }, CARD_ANIMATION_TIME);
       } else {
@@ -115,5 +119,23 @@ export const setShowModal = (payload: boolean) => {
       type: SET_SHOW_MODAL,
       payload,
     });
+  };
+};
+
+export const setShowResultModal = (payload: boolean) => {
+  return async (dispatch: ThunkDispatch<StoreType, {}, AppAction>) => {
+    dispatch({
+      type: SET_SHOW_RESULT_MODAL,
+      payload,
+    });
+  };
+};
+
+export const setBestResult = (data?: ResultType) => {
+  const resetData = { name: "", result: 0, date: "" };
+
+  return {
+    type: SET_BEST_RESULT,
+    data: data ?? resetData,
   };
 };

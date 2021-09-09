@@ -7,6 +7,7 @@ import { black } from "../../../constants/UIColors";
 import { resetGame } from "../../../redux/reducers/game/action";
 import { exitAppHandler, imagesTypes } from "../../../utils";
 import { imagesType } from "../../../utils/types";
+import { BestResult } from "../../elements/BestResult";
 import { styles } from "./style";
 import { Props } from "./types";
 
@@ -33,6 +34,8 @@ const DrawerMenu: FC<Props> = ({ closeDrawer }) => {
           </TouchableOpacity>
         );
       })}
+
+      <BestResult />
 
       {Platform.OS === "android" && (
         <TouchableOpacity

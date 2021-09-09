@@ -1,5 +1,6 @@
 /* eslint-disable global-require */
 import { BackHandler, Alert, ImageRequireSource } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CardDataType } from "../redux/reducers/game/types";
 import { imagesType } from "./types";
 
@@ -87,4 +88,32 @@ export const exitAppHandler = () => {
     },
     { text: "Выйти", onPress: () => BackHandler.exitApp() },
   ]);
+};
+
+export const setStoreData = async (data: {}) => {
+  try {
+    const jsonValue = JSON.stringify(data);
+    await AsyncStorage.setItem("@bestResult", jsonValue);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const resetStoreData = async () => {
+  const data = { name: "", result: 0, date: "" };
+  try {
+    const jsonValue = JSON.stringify(data);
+    await AsyncStorage.setItem("@bestResult", jsonValue);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getStoreData = async () => {
+  try {
+    const jsonValue = await AsyncStorage.getItem("@bestResult");
+    return jsonValue != null ? JSON.parse(jsonValue) : null;
+  } catch (e) {
+    console.log(e);
+  }
 };
